@@ -2,7 +2,7 @@ package com.example.gank.javabean;
 
 import java.util.List;
 
-public class Ios {
+public class GoodThings {
 	private String _idString;
 	private String createdAt;
 	private String desc;
@@ -70,6 +70,7 @@ public class Ios {
 	public void setWho(String who) {
 		this.who = who;
 	}
+	
 	public boolean hasPic()
 	{
 		if (images.size()>0) {

@@ -70,4 +70,14 @@ public class Android {
 	public void setWho(String who) {
 		this.who = who;
 	}
+	
+	public boolean hasPic()
+	{
+		if (images.size()>0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

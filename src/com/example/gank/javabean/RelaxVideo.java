@@ -2,7 +2,7 @@ package com.example.gank.javabean;
 
 import java.util.List;
 
-public class relaxVideo {
+public class RelaxVideo {
 	private String _idString;
 	private String createdAt;
 	private String desc;
@@ -69,5 +69,14 @@ public class relaxVideo {
 	}
 	public void setWho(String who) {
 		this.who = who;
+	}
+	public boolean hasPic()
+	{
+		if (images.size()>0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
