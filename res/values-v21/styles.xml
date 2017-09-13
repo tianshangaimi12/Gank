@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <style name="AppBaseThemeAbove" parent="AppBaseTheme">
+        <item name="android:navigationBarColor">@color/accent_material_light</item>
+        <!-- API 14 theme customizations can go here. -->
+    </style>
+</resources>

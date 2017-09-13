@@ -3,5 +3,5 @@
 
     <string name="app_name">Gank</string>
     <string name="hello_world">Hello world!</string>
-
+	<string name="main_title">干货集中营</string>
 </resources>
