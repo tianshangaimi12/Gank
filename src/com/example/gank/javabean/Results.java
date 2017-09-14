@@ -70,11 +70,17 @@ public class Results {
 	public List<NewsItem> getNewsItems()
 	{
 		List<NewsItem> newsList=new ArrayList<NewsItem>();
+		if(androids!=null)
 		newsList.addAll(androids);
+		if(ioss!=null)
 		newsList.addAll(ioss);
+		if(relaxVideos!=null)
 		newsList.addAll(relaxVideos);
+		if(fontDesigns!=null)
 		newsList.addAll(fontDesigns);
+		if(expandResources!=null)
 		newsList.addAll(expandResources);
+		if(goodThings!=null)
 		newsList.addAll(goodThings);
 		return newsList;
 	}

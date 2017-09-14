@@ -7,9 +7,11 @@ import com.example.gank.javabean.News;
 import com.example.gank.javabean.NewsItem;
 import com.example.gank.javabean.Results;
 import com.example.gank.main.R;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -24,11 +26,13 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 	private Results mResults;
 	private Context mContext;
 	private List<NewsItem> newsItems;
+	private Intent intent;
 	public static final int TYPE_PICGIRL=1;
 	public static final int TYPE_ITEM_TEXT=2;
 	public static final int TYPE_ITEM_PIC=3;
 	public static final int TYPE_ITEM_BOTTOM=4;
 	public static final int TYPE_TITLE=5;
+	public static final String IMG_LOAD_ACTION="loadingsucess";
 	
 	public NewsRecylerViewAdapter(Context context,News news)
 	{
@@ -36,6 +40,7 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		mNews=news;
 		mResults=mNews.getResults();
 		newsItems=mResults.getNewsItems();
+		intent=new Intent(IMG_LOAD_ACTION);
 	}
 
 	@Override
@@ -50,7 +55,18 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 			NewsItem item=newsItems.get(position-1);
 			TpIPViewHolder tpIPViewHolder=(TpIPViewHolder)arg0;
 			tpIPViewHolder.mTextView.setText(item.getDesc());
-			Picasso.with(mContext).load(item.getImages().get(0)).into(tpIPViewHolder.mImageView);
+			Picasso.with(mContext).load(item.getImages().get(0)).into(tpIPViewHolder.mImageView,new Callback() {
+				
+				@Override
+				public void onSuccess() {
+					mContext.sendBroadcast(intent);
+				}
+				
+				@Override
+				public void onError() {
+					
+				}
+			});
 		}
 		else if (arg0 instanceof TpITViewHolder) {
 			NewsItem item=newsItems.get(position-1);
@@ -60,7 +76,18 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		else if (arg0 instanceof TpPViewHolder) {
 			NewsItem item=newsItems.get(position-1);
 			TpPViewHolder tpPViewHolder=(TpPViewHolder)arg0;
-			Picasso.with(mContext).load(item.getUrl()).into(tpPViewHolder.mImageView);
+			Picasso.with(mContext).load(item.getUrl()).into(tpPViewHolder.mImageView,new Callback() {
+				
+				@Override
+				public void onSuccess() {
+					mContext.sendBroadcast(intent);
+				}
+				
+				@Override
+				public void onError() {
+					
+				}
+			});
 		}
 		else if (arg0 instanceof TpTViewHolder) {
 			TpTViewHolder tpTViewHolder=(TpTViewHolder)arg0;
