@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" 
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item 
+        android:title="Back"
+        android:id="@+id/btn_back"
+        android:icon="@drawable/back"
+        app:showAsAction="always"/>
+    <item 
         android:title="Exit"
         android:id="@+id/btn_exit"
         android:icon="@drawable/exit"

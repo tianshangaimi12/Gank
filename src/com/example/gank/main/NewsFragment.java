@@ -65,7 +65,13 @@ public class NewsFragment extends Fragment{
 	public void onDestroy() {
 		super.onDestroy();
 		if(receiver!=null)
-		getActivity().unregisterReceiver(receiver);
+		{
+			try {
+				getActivity().unregisterReceiver(receiver);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void initView(View view)
@@ -163,7 +169,7 @@ public class NewsFragment extends Fragment{
 					public void onResponse(JSONObject response) {
 						//Log.d(TAG, response.toString());
 						Gson gson=new Gson();
-						News news=gson.fromJson(response.toString(), News.class);
+						final News news=gson.fromJson(response.toString(), News.class);
 						if(news.getCategory().size()==0)
 						{
 							getBeforeNewsByDate(year, month, day);
@@ -178,6 +184,16 @@ public class NewsFragment extends Fragment{
 							Log.d(TAG, "加载时间"+year+"---"+month+"---"+day);
 							news.setDate("以下是"+year+"-"+month+"-"+day+"日推送内容");
 							adapter=new NewsRecylerViewAdapter(getActivity(),news);
+							adapter.setOnRecyclerViewClickListener(new RecyclerViewClickListener() {
+									@Override
+									public void onClick(View view, int position) {
+										if(getActivity() instanceof MainActivity)
+										{
+											MainActivity mainActivity=(MainActivity) getActivity();
+											mainActivity.loadUrl(news.getResults().getNewsItems().get(position-1).getUrl());
+										}
+									}
+							});
 							mRecyclerView.setAdapter(adapter);
 						}
 					}
@@ -202,6 +218,8 @@ public class NewsFragment extends Fragment{
 		Log.d(TAG, "前一天时间"+c.get(Calendar.YEAR)+"---"+(c.get(Calendar.MONTH))+"---"+c.get(Calendar.DAY_OF_MONTH));
 		getNewsByDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 	}
+	
+	
 	
 	class ImgLoadSuccessReceiver extends BroadcastReceiver
 	{

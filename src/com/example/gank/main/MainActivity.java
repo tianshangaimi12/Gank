@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.Toolbar.OnMenuItemClickListener;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity{
 		fm=getSupportFragmentManager();
 		transaction=fm.beginTransaction();
 		NewsFragment newsFragment=new NewsFragment();
-		transaction.add(R.id.framlayout_news, newsFragment);
+		transaction.add(R.id.framlayout_news, newsFragment,"NewsFragment");
 		transaction.commit();
 		mToolbar=(Toolbar)findViewById(R.id.toolbar_main);
 		mToolbar.setTitle("");
@@ -62,7 +63,9 @@ public class MainActivity extends BaseActivity{
 				case R.id.btn_exit:
 					ActivityCollector.finishAll();
 					break;
-
+				case R.id.btn_back:
+					finishWebFragment();
+					break;
 				default:
 					break;
 				}
@@ -101,6 +104,28 @@ public class MainActivity extends BaseActivity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu_main, menu);
 		return super.onCreateOptionsMenu(menu);
+	}
+	
+	public void loadUrl(String url)
+	{
+		if(!TextUtils.isEmpty(url))
+		{
+			transaction=fm.beginTransaction();
+			transaction.add(R.id.framlayout_news, new WebViewFragment(this,url), "WebViewFragment");
+			transaction.addToBackStack(null);
+			transaction.commit();
+		}
+	}
+	
+	public void finishWebFragment()
+	{
+		WebViewFragment webViewFragment=(WebViewFragment) fm.findFragmentByTag("WebViewFragment");
+		if(webViewFragment!=null)
+		{
+			transaction=fm.beginTransaction();
+			transaction.remove(webViewFragment);
+			transaction.commit();
+		}
 	}
 	
 }

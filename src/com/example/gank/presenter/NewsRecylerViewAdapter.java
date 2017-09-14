@@ -7,15 +7,18 @@ import com.example.gank.javabean.News;
 import com.example.gank.javabean.NewsItem;
 import com.example.gank.javabean.Results;
 import com.example.gank.main.R;
+import com.example.gank.main.RecyclerViewClickListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import android.R.integer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +30,7 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 	private Context mContext;
 	private List<NewsItem> newsItems;
 	private Intent intent;
+	private RecyclerViewClickListener listener;
 	public static final int TYPE_PICGIRL=1;
 	public static final int TYPE_ITEM_TEXT=2;
 	public static final int TYPE_ITEM_PIC=3;
@@ -49,12 +53,22 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 	}
 
 	@Override
-	public void onBindViewHolder(ViewHolder arg0, int position) {
+	public void onBindViewHolder(ViewHolder arg0, final int position) {
 		if(arg0 instanceof TpIPViewHolder)
 		{
 			NewsItem item=newsItems.get(position-1);
 			TpIPViewHolder tpIPViewHolder=(TpIPViewHolder)arg0;
 			tpIPViewHolder.mTextView.setText(item.getDesc());
+			tpIPViewHolder.itemView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if(listener!=null)
+					{
+						listener.onClick(v, position);
+					}
+				}
+			});
 			Picasso.with(mContext).load(item.getImages().get(0)).into(tpIPViewHolder.mImageView,new Callback() {
 				
 				@Override
@@ -71,6 +85,14 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		else if (arg0 instanceof TpITViewHolder) {
 			NewsItem item=newsItems.get(position-1);
 			TpITViewHolder tpITViewHolder=(TpITViewHolder)arg0;
+			tpITViewHolder.itemView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if(listener!=null)
+						listener.onClick(v,position);
+				}
+			});
 			tpITViewHolder.mTextView.setText(item.getDesc());
 		}
 		else if (arg0 instanceof TpPViewHolder) {
@@ -159,7 +181,7 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		}
 		
 		public TextView mTextView;
-		
+
 	}
 	
 	class TpPViewHolder extends ViewHolder
@@ -195,5 +217,12 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		}
 		
 	}
+	
+
+	public void setOnRecyclerViewClickListener(RecyclerViewClickListener listener)
+	{
+		this.listener=listener;
+	}
+
 
 }
