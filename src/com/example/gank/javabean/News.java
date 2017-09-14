@@ -3,6 +3,7 @@ package com.example.gank.javabean;
 import java.util.List;
 
 public class News {
+	private String date;
 	private List<String> category;
 	public List<String> getCategory() {
 		return category;
@@ -21,6 +22,14 @@ public class News {
 	}
 	public void setResults(Results results) {
 		this.results = results;
+	}
+	public String getDate()
+	{
+		return date;
+	}
+	public void setDate(String date)
+	{
+		this.date=date;
 	}
 	private boolean error;
 	private Results results;

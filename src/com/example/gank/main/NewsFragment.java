@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.gank.javabean.News;
+import com.example.gank.presenter.NewsRecylerViewAdapter;
 import com.example.gank.utils.UrlUtil;
 import com.google.gson.Gson;
 
@@ -19,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,9 +32,8 @@ import android.widget.Toast;
 
 public class NewsFragment extends Fragment{
 	private SwipeRefreshLayout mRefreshLayout;
-	private Toolbar mToolbar;
 	private RecyclerView mRecyclerView;
-	private News news;
+	private NewsRecylerViewAdapter adapter;
 	public final String TAG="NewsFragment";
 	@Override
 	@Nullable
@@ -50,7 +51,15 @@ public class NewsFragment extends Fragment{
 		LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		mRecyclerView.setLayoutManager(layoutManager);
+		mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 		mRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.refreshlayout);
+		mRefreshLayout.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				mRefreshLayout.setRefreshing(true);
+			}
+		});
 		mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
 			
 			@Override
@@ -89,26 +98,29 @@ public class NewsFragment extends Fragment{
 		else {
 			dayString=String.valueOf(day);
 		}
-		mRefreshLayout.setRefreshing(true);
 		String url=UrlUtil.getDayQueryUrl()+year+"/"+monthString+"/"+dayString;
 		JsonObjectRequest request=new JsonObjectRequest(url, null,
 				new Response.Listener<JSONObject>() {
 
 					@Override
 					public void onResponse(JSONObject response) {
-						mRefreshLayout.setRefreshing(false);
 						Log.d(TAG, response.toString());
 						Gson gson=new Gson();
-						news=gson.fromJson(response.toString(), News.class);
+						News news=gson.fromJson(response.toString(), News.class);
 						if(news.getCategory().size()==0)
 						{
 							Calendar c=Calendar.getInstance();
+							c.set(year, month, day);
 							int day=c.get(Calendar.DATE);
 							c.set(Calendar.DATE,day-1);
-							getNewsByDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+							getNewsByDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+							Log.d(TAG, c.get(Calendar.YEAR)+"---"+(c.get(Calendar.MONTH))+"---"+c.get(Calendar.DAY_OF_MONTH));
 						}
 						else {
-							
+							mRefreshLayout.setRefreshing(false);
+							news.setDate("以下是"+year+"-"+month+"-"+day+"日推送内容");
+							adapter=new NewsRecylerViewAdapter(getActivity(),news);
+							mRecyclerView.setAdapter(adapter);
 						}
 					}
 				}, 

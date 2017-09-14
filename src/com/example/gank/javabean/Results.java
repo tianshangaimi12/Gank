@@ -6,88 +6,77 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class Results {
-	public List<Android> getAndroids() {
+	@SerializedName("Android")
+	private List<NewsItem> androids;
+	public List<NewsItem> getAndroids() {
 		return androids;
 	}
-	public void setAndroids(List<Android> androids) {
+
+	public void setAndroids(List<NewsItem> androids) {
 		this.androids = androids;
 	}
-	public List<Ios> getIoss() {
+
+	public List<NewsItem> getIoss() {
 		return ioss;
 	}
-	public void setIoss(List<Ios> ioss) {
+
+	public void setIoss(List<NewsItem> ioss) {
 		this.ioss = ioss;
 	}
-	public List<ExpandResource> getExpandResources() {
+
+	public List<NewsItem> getExpandResources() {
 		return expandResources;
 	}
-	public void setExpandResources(List<ExpandResource> expandResources) {
+
+	public void setExpandResources(List<NewsItem> expandResources) {
 		this.expandResources = expandResources;
 	}
-	public List<FontDesign> getFontDesigns() {
+
+	public List<NewsItem> getFontDesigns() {
 		return fontDesigns;
 	}
-	public void setFontDesigns(List<FontDesign> fontDesigns) {
+
+	public void setFontDesigns(List<NewsItem> fontDesigns) {
 		this.fontDesigns = fontDesigns;
 	}
-	public List<GoodThings> getGoodThings() {
+
+	public List<NewsItem> getGoodThings() {
 		return goodThings;
 	}
-	public void setGoodThings(List<GoodThings> goodThings) {
+
+	public void setGoodThings(List<NewsItem> goodThings) {
 		this.goodThings = goodThings;
 	}
-	public List<RelaxVideo> getRelaxVideos() {
+
+	public List<NewsItem> getRelaxVideos() {
 		return relaxVideos;
 	}
-	public void setRelaxVideos(List<RelaxVideo> relaxVideos) {
+
+	public void setRelaxVideos(List<NewsItem> relaxVideos) {
 		this.relaxVideos = relaxVideos;
 	}
-	@SerializedName("Android")
-	private List<Android> androids;
+
 	@SerializedName("iOS")
-	private List<Ios> ioss;
+	private List<NewsItem> ioss;
 	@SerializedName("拓展资源")
-	private List<ExpandResource> expandResources;
+	private List<NewsItem> expandResources;
 	@SerializedName("前端")
-	private List<FontDesign> fontDesigns;
+	private List<NewsItem> fontDesigns;
 	@SerializedName("福利")
-	private List<GoodThings> goodThings;
+	private List<NewsItem> goodThings;
 	@SerializedName("休息视频")
-	private List<RelaxVideo> relaxVideos;
+	private List<NewsItem> relaxVideos;
 	
-	public int getNewsLength()
+	public List<NewsItem> getNewsItems()
 	{
-		return androids.size()+ioss.size()+expandResources.size()+fontDesigns.size()+goodThings.size()+relaxVideos.size();
-	}
-	
-	public boolean hasPic(int position)
-	{
-		List<Object> newsList=new ArrayList<Object>();
+		List<NewsItem> newsList=new ArrayList<NewsItem>();
 		newsList.addAll(androids);
 		newsList.addAll(ioss);
 		newsList.addAll(relaxVideos);
 		newsList.addAll(fontDesigns);
 		newsList.addAll(expandResources);
 		newsList.addAll(goodThings);
-		Object object = newsList.get(position);
-		if (object instanceof Android) {
-			return ((Android) object).hasPic();
-		} else if (object instanceof Ios) {
-			return ((Ios) object).hasPic();
-		} else if (object instanceof ExpandResource) {
-			return ((ExpandResource) object).hasPic();
-		} else if (object instanceof FontDesign) {
-			return ((FontDesign) object).hasPic();
-		} else if (object instanceof GoodThings) {
-			return ((GoodThings) object).hasPic();
-		} else {
-			return ((RelaxVideo) object).hasPic();
-		}
-	}
-	
-	public int getGoodThingsLocation()
-	{
-		return androids.size()+ioss.size()+relaxVideos.size()+fontDesigns.size()+expandResources.size();
+		return newsList;
 	}
 	
 }

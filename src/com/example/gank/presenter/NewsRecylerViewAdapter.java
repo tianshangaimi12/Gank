@@ -1,9 +1,13 @@
 package com.example.gank.presenter;
 
+import java.util.List;
 import java.util.zip.Inflater;
 
 import com.example.gank.javabean.News;
+import com.example.gank.javabean.NewsItem;
+import com.example.gank.javabean.Results;
 import com.example.gank.main.R;
+import com.squareup.picasso.Picasso;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -17,29 +21,50 @@ import android.widget.TextView;
 public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 	
 	private News mNews;
+	private Results mResults;
 	private Context mContext;
+	private List<NewsItem> newsItems;
 	public static final int TYPE_PICGIRL=1;
 	public static final int TYPE_ITEM_TEXT=2;
 	public static final int TYPE_ITEM_PIC=3;
 	public static final int TYPE_ITEM_BOTTOM=4;
+	public static final int TYPE_TITLE=5;
 	
 	public NewsRecylerViewAdapter(Context context,News news)
 	{
 		mContext=context;
 		mNews=news;
+		mResults=mNews.getResults();
+		newsItems=mResults.getNewsItems();
 	}
 
 	@Override
 	public int getItemCount() {
-		return mNews.getResults().getNewsLength()+1;
+		return newsItems.size()+1;
 	}
 
 	@Override
 	public void onBindViewHolder(ViewHolder arg0, int position) {
 		if(arg0 instanceof TpIPViewHolder)
 		{
+			NewsItem item=newsItems.get(position-1);
 			TpIPViewHolder tpIPViewHolder=(TpIPViewHolder)arg0;
-			
+			tpIPViewHolder.mTextView.setText(item.getDesc());
+			Picasso.with(mContext).load(item.getImages().get(0)).into(tpIPViewHolder.mImageView);
+		}
+		else if (arg0 instanceof TpITViewHolder) {
+			NewsItem item=newsItems.get(position-1);
+			TpITViewHolder tpITViewHolder=(TpITViewHolder)arg0;
+			tpITViewHolder.mTextView.setText(item.getDesc());
+		}
+		else if (arg0 instanceof TpPViewHolder) {
+			NewsItem item=newsItems.get(position-1);
+			TpPViewHolder tpPViewHolder=(TpPViewHolder)arg0;
+			Picasso.with(mContext).load(item.getUrl()).into(tpPViewHolder.mImageView);
+		}
+		else if (arg0 instanceof TpTViewHolder) {
+			TpTViewHolder tpTViewHolder=(TpTViewHolder)arg0;
+			tpTViewHolder.mTextView.setText(mNews.getDate());
 		}
 		
 	}
@@ -65,6 +90,10 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 			break;
 		case TYPE_ITEM_BOTTOM:
 			break;
+		case TYPE_TITLE:
+			View view5=LayoutInflater.from(mContext).inflate(R.layout.newsrecyclerview_title, arg0,false);
+			TpTViewHolder tpTViewHolder=new TpTViewHolder(view5);
+			wHolder=tpTViewHolder;
 		default:
 			break;
 		}
@@ -73,15 +102,14 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 	
 	@Override
 	public int getItemViewType(int position) {
-		if(position==mNews.getResults().getGoodThingsLocation())
+		if(position==0)
+			return TYPE_TITLE;
+		else if(newsItems.get(position-1).getType().equals(mContext.getResources().getString(R.string.goodthings)))
 			return TYPE_PICGIRL;
-		else if (position==getItemCount()-1) {
-			return TYPE_ITEM_BOTTOM;
-		}
-		else if (mNews.getResults().hasPic(position)) {
+		else if (newsItems.get(position-1).getImages()!=null)
 			return TYPE_ITEM_PIC;
-		}
 		else return TYPE_ITEM_TEXT;
+
 	}
 	
 	class TpIPViewHolder extends ViewHolder
@@ -127,6 +155,17 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		}
 		
 		public TextView mTextView;
+		
+	}
+	
+	class TpTViewHolder extends ViewHolder
+	{
+		public TextView mTextView;
+
+		public TpTViewHolder(View arg0) {
+			super(arg0);
+			mTextView=(TextView)arg0.findViewById(R.id.txt_title_title);
+		}
 		
 	}
 
