@@ -5,4 +5,15 @@
     <string name="hello_world">Hello world!</string>
 	<string name="main_title">干货集中营</string>
 	<string name="goodthings">福利</string>
+	<string name="welcome_title">欢迎来到Gank集中营</string>
+	<string name="name_txt">用户名:</string>
+	<string name="pwd_txt">密 码：</string>
+	<string name="name_edit_hint">请输入用户名</string>
+	<string name="pwd_edit_hint">请输入密码</string>
+	<string name="login_btn">登录</string>
+	<string name="register_txt">没有账号？来注册一个</string>
+	<string name="remember_checkbox">记住账号</string>
+	<string name="nouser_toast">该用户不存在</string>
+	<string name="register_title_txt">请填写您的注册信息</string>
+	<string name="register_btn">注册</string>
 </resources>
