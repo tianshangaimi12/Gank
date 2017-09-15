@@ -3,7 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#40ff">
-    
-
+    android:background="#0ff">
+    <ImageView 
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        android:src="@drawable/people"/>
+	<TextView 
+	    android:textSize="24sp"
+	    android:textColor="#fff"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="5dp"
+	    android:layout_gravity="center_horizontal"
+	    android:id="@+id/txt_menufragment_name"/>
+	<Button 
+	    android:id="@+id/btn_return_login"
+	    android:background="@drawable/btn_shape"
+	    android:layout_width="120dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:layout_marginTop="100dp"
+	    android:text="@string/exit_btn"
+	    android:textSize="24sp"/>
 </LinearLayout>

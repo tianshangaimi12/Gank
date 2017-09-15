@@ -16,4 +16,7 @@
 	<string name="nouser_toast">该用户不存在</string>
 	<string name="register_title_txt">请填写您的注册信息</string>
 	<string name="register_btn">注册</string>
+	<string name="noname_txt">游客</string>
+	<string name="exit_btn">退出</string>
+	<string name="guest_login_txt">游客登录</string>
 </resources>

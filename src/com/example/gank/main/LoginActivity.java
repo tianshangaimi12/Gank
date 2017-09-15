@@ -23,6 +23,7 @@ public class LoginActivity extends Activity{
 	private EditText mEditTextPwd;
 	private Button mButtonLogin;
 	private TextView mTextViewRegister;
+	private TextView mTextViewLogin;
 	private CheckBox mCheckBoxRemember;
 	private ImageButton mImageButtonDeleteName;
 	private ImageButton mImageButtonDeletePwd;
@@ -67,6 +68,7 @@ public class LoginActivity extends Activity{
 					editor.putBoolean("isRemember", isRememberInfo);
 					editor.commit();
 					Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+					intent.putExtra("name", name);
 					startActivity(intent);
 					finish();
 				}
@@ -127,6 +129,16 @@ public class LoginActivity extends Activity{
 						dialog.dismiss();
 					}
 				});
+			}
+		});
+		mTextViewLogin=(TextView)findViewById(R.id.txt_guest_login);
+		mTextViewLogin.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+				startActivity(intent);
+				finish();
 			}
 		});
 	}

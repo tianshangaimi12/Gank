@@ -109,4 +109,14 @@
 	    android:textColor="#fff"
 	    android:gravity="center"
 	    android:layout_gravity="center_horizontal"/>
+	<TextView 
+	    android:layout_marginTop="5dp"
+	    android:id="@+id/txt_guest_login"
+	    android:text="@string/guest_login_txt"
+	    android:textSize="14sp"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textColor="#fff"
+	    android:gravity="center"
+	    android:layout_gravity="center_horizontal"/>
 </LinearLayout>
