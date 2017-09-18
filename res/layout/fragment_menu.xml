@@ -19,13 +19,18 @@
 	    android:layout_marginTop="5dp"
 	    android:layout_gravity="center_horizontal"
 	    android:id="@+id/txt_menufragment_name"/>
+	<com.example.gank.widget.MenuItem
+	    android:id="@+id/menu_query_bytype"
+	    android:layout_width="match_parent"
+	    android:layout_height="36dp"
+	    android:layout_marginTop="50dp"/>
 	<Button 
 	    android:id="@+id/btn_return_login"
 	    android:background="@drawable/btn_shape"
 	    android:layout_width="120dp"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center_horizontal"
-	    android:layout_marginTop="100dp"
+	    android:layout_marginTop="50dp"
 	    android:text="@string/exit_btn"
 	    android:textSize="24sp"/>
 </LinearLayout>

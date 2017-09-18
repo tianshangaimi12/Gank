@@ -19,4 +19,6 @@
 	<string name="noname_txt">游客</string>
 	<string name="exit_btn">退出</string>
 	<string name="guest_login_txt">游客登录</string>
+	<string name="query_bytype_menu">根据类型查询</string>
+	<string name="no_permission_toast">未注册用户无此功能</string>
 </resources>
