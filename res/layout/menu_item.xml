@@ -8,24 +8,25 @@
         android:background="#000"
         android:id="@+id/menu_title_bar"
         android:layout_marginBottom="2dp"/>
+    <ImageView 
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/img_menu_img"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/txt_menufragment_item"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/menu_title_bar"/>
     <TextView 
         android:layout_below="@+id/menu_title_bar"
         android:id="@+id/txt_menufragment_item"
         android:textSize="24sp"
         android:textColor="#fff"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@+id/img_menu_img"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="20dp"/>
-    <ImageView 
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:scaleType="center"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/txt_menufragment_item"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/next"/>
+        android:gravity="center_vertical"/>
 	<View 
 	    android:layout_width="match_parent"
 	    android:layout_height="1dp"

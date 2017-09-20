@@ -18,7 +18,10 @@ import android.widget.Toast;
 public class MenuFragment extends Fragment{
 	private TextView mTextViewName;
 	private Button mButtonExit;
-	private MenuItem menuItemQueryType;
+	private MenuItem menuItemQueryAndroid;
+	private MenuItem menuItemQueryIos;
+	private MenuItem menuItemQueryFontDesign;
+	private MenuItem menuItemQueryGoodThing;
 	
 	@Override
 	@Nullable
@@ -51,9 +54,10 @@ public class MenuFragment extends Fragment{
 				getActivity().finish();
 			}
 		});
-		menuItemQueryType=(MenuItem)view.findViewById(R.id.menu_query_bytype);
-		menuItemQueryType.setText(getResources().getString(R.string.query_bytype_menu));
-		menuItemQueryType.setOnClickListener(new OnClickListener() {
+		menuItemQueryAndroid=(MenuItem)view.findViewById(R.id.menu_query_android);
+		menuItemQueryAndroid.setText("Android");
+		menuItemQueryAndroid.setImg(R.drawable.android);
+		menuItemQueryAndroid.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -66,5 +70,54 @@ public class MenuFragment extends Fragment{
 				}
 			}
 		});
+		menuItemQueryIos=(MenuItem)view.findViewById(R.id.menu_query_ios);
+		menuItemQueryIos.setText("Ios");
+		menuItemQueryIos.setImg(R.drawable.ios);
+		menuItemQueryIos.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(TextUtils.isEmpty(name))
+				{
+					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		menuItemQueryFontDesign=(MenuItem)view.findViewById(R.id.menu_query_fontdesign);
+		menuItemQueryFontDesign.setText(getResources().getString(R.string.fontdesign));
+		menuItemQueryFontDesign.setImg(R.drawable.net);
+		menuItemQueryFontDesign.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(TextUtils.isEmpty(name))
+				{
+					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		menuItemQueryGoodThing=(MenuItem)view.findViewById(R.id.menu_query_goodthing);
+		menuItemQueryGoodThing.setText(getResources().getString(R.string.goodthings));
+		menuItemQueryGoodThing.setImg(R.drawable.beautifullady);
+		menuItemQueryGoodThing.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(TextUtils.isEmpty(name))
+				{
+					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
+				}
+				else {
+					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		
 	}
 }

@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
 	<string name="main_title">干货集中营</string>
 	<string name="goodthings">福利</string>
+	<string name="fontdesign">前端</string>
 	<string name="welcome_title">欢迎来到Gank集中营</string>
 	<string name="name_txt">用户名:</string>
 	<string name="pwd_txt">密 码：</string>
