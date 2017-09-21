@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView 
+        android:text="Gank About"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="#00f"/>
+	<Button 
+	    android:background="@drawable/dialog_item"
+	    android:layout_width="match_parent"
+	    android:layout_height="10dp"/>
+	<TextView 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="2"
+	    android:gravity="center"
+	    android:textSize="16sp"
+	    android:text="Created by:ZhangChong\nThe best android developer"
+	    android:textColor="#f00"/>
+	<Button 
+	    android:background="@drawable/dialog_item"
+	    android:layout_width="match_parent"
+	    android:layout_height="10dp"/>
+	<TextView 
+	    android:id="@+id/txt_close_dialog"
+	    android:text="Close"
+	    android:textSize="24sp"
+	    android:textColor="#00f"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:gravity="center"/>
+</LinearLayout>

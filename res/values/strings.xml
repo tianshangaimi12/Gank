@@ -24,4 +24,5 @@
 	<string name="query_bytype_menu">根据类型查询</string>
 	<string name="no_permission_toast">未注册用户无此功能</string>
 	<string name="rightnow_toast">已在当天新闻页面</string>
+	<string name="about_btn">关于</string>
 </resources>

@@ -2,6 +2,8 @@ package com.example.gank.main;
 
 import com.example.gank.widget.MenuItem;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ public class MenuFragment extends Fragment{
 	private MenuItem menuItemQueryIos;
 	private MenuItem menuItemQueryFontDesign;
 	private MenuItem menuItemQueryGoodThing;
+	private Button mButtonAbout;
 	
 	@Override
 	@Nullable
@@ -132,6 +136,26 @@ public class MenuFragment extends Fragment{
 				}
 			}
 		});
-		
+		mButtonAbout=(Button)view.findViewById(R.id.btn_about);
+		mButtonAbout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+				View view=LayoutInflater.from(getActivity()).inflate(R.layout.about_dialog, null,false);
+				TextView textViewClose=(TextView)view.findViewById(R.id.txt_close_dialog);
+				builder.setView(view);
+				builder.create();
+				final Dialog dialog=builder.show();
+				textViewClose.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						if(dialog.isShowing())
+							dialog.dismiss();
+					}
+				});
+			}
+		});
 	}
 }
