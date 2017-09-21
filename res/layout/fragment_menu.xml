@@ -7,10 +7,11 @@
     <ImageView 
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="center"
-        android:src="@drawable/people"/>
+        android:src="@drawable/people"
+        android:background="#00ff"/>
 	<TextView 
 	    android:textSize="24sp"
 	    android:textColor="#fff"
@@ -40,12 +41,21 @@
 	    android:layout_height="36dp"
 	    android:layout_marginTop="10dp"/>
 	<Button 
-	    android:id="@+id/btn_return_login"
+	    android:id="@+id/btn_return_query_date"
 	    android:background="@drawable/btn_shape"
 	    android:layout_width="120dp"
 	    android:layout_height="wrap_content"
 	    android:layout_gravity="center_horizontal"
 	    android:layout_marginTop="100dp"
+	    android:text="@string/return_query_date"
+	    android:textSize="24sp"/>
+	<Button 
+	    android:id="@+id/btn_return_login"
+	    android:background="@drawable/btn_shape"
+	    android:layout_width="120dp"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:layout_marginTop="20dp"
 	    android:text="@string/exit_btn"
 	    android:textSize="24sp"/>
 </LinearLayout>

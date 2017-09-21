@@ -88,13 +88,13 @@ public class NewsFragment extends Fragment{
 			@Override
 			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 				super.onScrolled(recyclerView, dx, dy);
-				if(isLoadingFinish)
+				/*if(isLoadingFinish)
 				{
 					int lastPosition=layoutManager.findLastVisibleItemPosition();
-					/*Log.d(TAG, "visibleItemCount="+visibleItemCount);
+					Log.d(TAG, "visibleItemCount="+visibleItemCount);
 					Log.d(TAG, "totalItemCount="+totalItemCount);
 					Log.d(TAG, "firstVisbelItem="+firstVisibleItem);
-					Log.d(TAG, "lastPosition="+lastPosition);*/
+					Log.d(TAG, "lastPosition="+lastPosition);
 					if(lastPosition+1==adapter.getItemCount())
 					{
 						mRecyclerView.postDelayed(new Runnable() {
@@ -105,7 +105,7 @@ public class NewsFragment extends Fragment{
 						}, 2000);
 						isLoadingFinish=false;
 					}
-				}
+				}*/
 			}
 		});
 		mRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.refreshlayout);
@@ -120,8 +120,7 @@ public class NewsFragment extends Fragment{
 			
 			@Override
 			public void onRefresh() {
-				Toast.makeText(getActivity(), "Loading", Toast.LENGTH_SHORT).show();
-				initData();
+				getBeforeNewsByDate(nowYear, nowMonth, nowDay);
 			}
 		});
 	}

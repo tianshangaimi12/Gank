@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class MenuFragment extends Fragment{
 	private TextView mTextViewName;
 	private Button mButtonExit;
+	private Button mButtonReturn;
 	private MenuItem menuItemQueryAndroid;
 	private MenuItem menuItemQueryIos;
 	private MenuItem menuItemQueryFontDesign;
@@ -116,6 +117,18 @@ public class MenuFragment extends Fragment{
 				}
 				else {
 					activity.showTypeNewsFragment(TypeNewsFragment.GOODTHING);
+				}
+			}
+		});
+		mButtonReturn=(Button)view.findViewById(R.id.btn_return_query_date);
+		mButtonReturn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(getActivity() instanceof MainActivity)
+				{
+					MainActivity activity=(MainActivity)getActivity();
+					activity.returnNewsFragment();
 				}
 			}
 		});

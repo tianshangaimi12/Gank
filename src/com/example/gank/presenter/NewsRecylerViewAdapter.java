@@ -96,6 +96,14 @@ public class NewsRecylerViewAdapter extends RecyclerView.Adapter<ViewHolder>{
 		else if (arg0 instanceof TpPViewHolder) {
 			NewsItem item=newsItems.get(position-1);
 			TpPViewHolder tpPViewHolder=(TpPViewHolder)arg0;
+			tpPViewHolder.mImageView.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if(listener!=null)
+						listener.onClick(v, position);
+				}
+			});
 			Picasso.with(mContext).load(item.getUrl()).into(tpPViewHolder.mImageView,new Callback() {
 				
 				@Override

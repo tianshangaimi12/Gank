@@ -13,12 +13,14 @@ import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.Toolbar.OnMenuItemClickListener;
 import android.text.TextUtils;
+import android.text.style.TtsSpan;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends BaseActivity{
 	private DrawerLayout mDrawerLayout;
@@ -152,4 +154,19 @@ public class MainActivity extends BaseActivity{
 		mDrawerLayout.closeDrawer(Gravity.LEFT);
 	}
 	
+	public void returnNewsFragment()
+	{
+		NewsFragment newsFragment=(NewsFragment) fm.findFragmentByTag("NewsFragment");
+		if(newsFragment==null)
+		{
+			newsFragment=new NewsFragment();
+			transaction=fm.beginTransaction();
+			transaction.replace(R.id.framlayout_news, newsFragment,"NewsFragment");
+			transaction.commit();
+		}
+		else {
+			Toast.makeText(this, getResources().getString(R.string.rightnow_toast), Toast.LENGTH_SHORT).show();
+		}
+		mDrawerLayout.closeDrawer(Gravity.LEFT);
+	}
 }

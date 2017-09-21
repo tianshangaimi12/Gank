@@ -55,13 +55,13 @@ public class TypeNewsFragment extends Fragment{
 	public void initView(View view)
 	{
 		mSwipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.swiperefreshlayout_type_news);
-		mSwipeRefreshLayout.postDelayed(new Runnable() {
+		mSwipeRefreshLayout.post(new Runnable() {
 			
 			@Override
 			public void run() {
 				mSwipeRefreshLayout.setRefreshing(true);
 			}
-		}, 100);
+		});
 		mSwipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
 			
 			@Override
@@ -111,7 +111,7 @@ public class TypeNewsFragment extends Fragment{
 								@Override
 								public void onClick(View view, int position) {
 									MainActivity mainActivity=(MainActivity) getActivity();
-									mainActivity.loadUrl(typeNews.getResults().get(position-1).getUrl());
+									mainActivity.loadUrl(typeNews.getResults().get(position).getUrl());
 								}
 							});
 						}
