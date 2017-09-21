@@ -128,4 +128,28 @@ public class MainActivity extends BaseActivity{
 		}
 	}
 	
+	public void removeNewsFragment()
+	{
+		NewsFragment newsFragment=(NewsFragment) fm.findFragmentByTag("NewsFragment");
+		if(newsFragment!=null)
+		{
+			transaction=fm.beginTransaction();
+			transaction.remove(newsFragment);
+			transaction.commit();
+		}
+	}
+	
+	public void showTypeNewsFragment(int type)
+	{
+		removeNewsFragment();
+		TypeNewsFragment typeNewsFragment=new TypeNewsFragment();
+		Bundle bundle=new Bundle();
+		bundle.putInt("type", type);
+		typeNewsFragment.setArguments(bundle);
+		transaction=fm.beginTransaction();
+		transaction.add(R.id.framlayout_news, typeNewsFragment, "TypeNewsFragment");
+		transaction.commit();
+		mDrawerLayout.closeDrawer(Gravity.LEFT);
+	}
+	
 }

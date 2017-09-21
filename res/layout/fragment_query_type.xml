@@ -3,8 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout_type_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+        <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_type_news"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <TextView 
+        android:text="1111"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="33sp"/>
 </LinearLayout>

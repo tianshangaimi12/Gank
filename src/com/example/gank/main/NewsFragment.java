@@ -1,8 +1,6 @@
 package com.example.gank.main;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -13,14 +11,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.gank.javabean.News;
 import com.example.gank.javabean.NewsItem;
 import com.example.gank.presenter.NewsRecylerViewAdapter;
-import com.example.gank.utils.UrlUtil;
+import com.example.gank.utils.UrlUtils;
 import com.google.gson.Gson;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,7 +27,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +40,6 @@ public class NewsFragment extends Fragment{
 	private int nowYear;
 	private int nowMonth;
 	private int nowDay;
-	private int lastItemPositon;
 	private int totalLoadImgs;
 	private int totalImgs;
 	private boolean isLoadingFinish=false;
@@ -72,6 +67,7 @@ public class NewsFragment extends Fragment{
 				e.printStackTrace();
 			}
 		}
+		mRecyclerView.removeAllViews();
 	}
 	
 	public void initView(View view)
@@ -92,9 +88,6 @@ public class NewsFragment extends Fragment{
 			@Override
 			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 				super.onScrolled(recyclerView, dx, dy);
-				int visibleItemCount = recyclerView.getChildCount(); 
-				int totalItemCount = layoutManager.getItemCount(); 
-				int firstVisibleItem = layoutManager.findFirstVisibleItemPosition();
 				if(isLoadingFinish)
 				{
 					int lastPosition=layoutManager.findLastVisibleItemPosition();
@@ -139,7 +132,7 @@ public class NewsFragment extends Fragment{
 		int year=c.get(Calendar.YEAR);
 		int month=c.get(Calendar.MONTH)+1;
 		int day=c.get(Calendar.DAY_OF_MONTH);
-		getNewsByDate(year, month, 12);
+		getNewsByDate(year, month, day);
 	}
 	
 	
@@ -161,7 +154,7 @@ public class NewsFragment extends Fragment{
 		else {
 			dayString=String.valueOf(day);
 		}
-		String url=UrlUtil.getDayQueryUrl()+year+"/"+monthString+"/"+dayString;
+		String url=UrlUtils.getDayQueryUrl()+year+"/"+monthString+"/"+dayString;
 		JsonObjectRequest request=new JsonObjectRequest(url, null,
 				new Response.Listener<JSONObject>() {
 

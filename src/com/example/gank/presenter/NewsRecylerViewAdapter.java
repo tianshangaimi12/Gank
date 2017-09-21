@@ -1,7 +1,6 @@
 package com.example.gank.presenter;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import com.example.gank.javabean.News;
 import com.example.gank.javabean.NewsItem;
@@ -11,7 +10,6 @@ import com.example.gank.main.RecyclerViewClickListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import android.R.integer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;

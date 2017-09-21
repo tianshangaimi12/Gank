@@ -34,6 +34,7 @@ public class MenuFragment extends Fragment{
 	
 	public void initView(View view)
 	{
+		final MainActivity activity=(MainActivity)getActivity();
 		mTextViewName=(TextView)view.findViewById(R.id.txt_menufragment_name);
 		Intent intent=getActivity().getIntent();
 		final String name=intent.getStringExtra("name");
@@ -66,7 +67,7 @@ public class MenuFragment extends Fragment{
 					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
 				}
 				else {
-					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+					activity.showTypeNewsFragment(TypeNewsFragment.ANDROID);
 				}
 			}
 		});
@@ -82,7 +83,7 @@ public class MenuFragment extends Fragment{
 					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
 				}
 				else {
-					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+					activity.showTypeNewsFragment(TypeNewsFragment.IOS);
 				}
 			}
 		});
@@ -98,7 +99,7 @@ public class MenuFragment extends Fragment{
 					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
 				}
 				else {
-					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+					activity.showTypeNewsFragment(TypeNewsFragment.FONTDESIGN);
 				}
 			}
 		});
@@ -114,7 +115,7 @@ public class MenuFragment extends Fragment{
 					Toast.makeText(getActivity(), getResources().getString(R.string.no_permission_toast), Toast.LENGTH_SHORT).show();
 				}
 				else {
-					Toast.makeText(getActivity(), "Not done yet", Toast.LENGTH_SHORT).show();
+					activity.showTypeNewsFragment(TypeNewsFragment.GOODTHING);
 				}
 			}
 		});
