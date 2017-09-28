@@ -32,22 +32,13 @@
 	        android:layout_weight="2"
 	        android:text="@string/name_txt"
 	        android:textSize="14sp"/>
-	    <EditText 
+	    <com.example.gank.widget.EditTextWithDelete 
 	        android:id="@+id/edt_name"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="6"
 	        android:hint="@string/name_edit_hint"
 	        android:textSize="14sp"/>
-	    <ImageButton
-	        android:layout_gravity="center|left"
-	        android:id="@+id/imgbtn_delete_name"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-	        android:scaleType="center"
-	        android:src="@drawable/delete"
-	        android:background="@color/accent_material_dark"/>
 	</LinearLayout>
 	<LinearLayout 
 	    android:layout_marginTop="20dp"
@@ -63,23 +54,14 @@
 	        android:layout_weight="2"
 	        android:text="@string/pwd_txt"
 	        android:textSize="14sp"/>
-	    <EditText 
+	    <com.example.gank.widget.EditTextWithDelete 
 	        android:id="@+id/edt_pwd"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="6"
 	        android:hint="@string/pwd_edit_hint"
 	        android:textSize="14sp"
-	        android:password="true"/>
-	    <ImageButton
-	        android:layout_gravity="center|left"
-	        android:id="@+id/imgbtn_delete_pwd"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-	        android:scaleType="center"
-	        android:src="@drawable/delete"
-	        android:background="@color/accent_material_dark"/>
+	        android:inputType="textPassword"/>
 	</LinearLayout>
 		<CheckBox 
 	    android:id="@+id/checkbox_remember"

@@ -1,5 +1,7 @@
 package com.example.gank.main;
 
+import com.example.gank.widget.EditTextWithDelete;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,14 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity{
-	private EditText mEditTextName;
-	private EditText mEditTextPwd;
+	private EditTextWithDelete mEditTextName;
+	private EditTextWithDelete mEditTextPwd;
 	private Button mButtonLogin;
 	private TextView mTextViewRegister;
 	private TextView mTextViewLogin;
 	private CheckBox mCheckBoxRemember;
-	private ImageButton mImageButtonDeleteName;
-	private ImageButton mImageButtonDeletePwd;
 	private String name;
 	private String pwd;
 	private boolean isRemember;
@@ -76,26 +76,8 @@ public class LoginActivity extends Activity{
 				}
 			}
 		});
-		mImageButtonDeleteName=(ImageButton)findViewById(R.id.imgbtn_delete_name);
-		mImageButtonDeleteName.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if(!mEditTextName.getText().toString().equals(""))
-					mEditTextName.setText("");
-			}
-		});
-		mImageButtonDeletePwd=(ImageButton)findViewById(R.id.imgbtn_delete_pwd);
-		mImageButtonDeletePwd.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if(!mEditTextPwd.getText().toString().equals(""))
-					mEditTextPwd.setText("");
-			}
-		});
-		mEditTextName=(EditText)findViewById(R.id.edt_name);
-		mEditTextPwd=(EditText)findViewById(R.id.edt_pwd);
+		mEditTextName=(EditTextWithDelete)findViewById(R.id.edt_name);
+		mEditTextPwd=(EditTextWithDelete)findViewById(R.id.edt_pwd);
 		mCheckBoxRemember=(CheckBox)findViewById(R.id.checkbox_remember);
 		if(isRemember)
 		{
