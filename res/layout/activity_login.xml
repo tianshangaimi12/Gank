@@ -29,10 +29,13 @@
 	    <TextView 
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:layout_weight="2"
+	        android:layout_weight="1.5"
 	        android:text="@string/name_txt"
 	        android:textSize="14sp"/>
 	    <com.example.gank.widget.EditTextWithDelete 
+	        android:drawableLeft="@drawable/people_edittext"
+	        android:paddingTop="2dp"
+	        android:paddingLeft="5dp"
 	        android:id="@+id/edt_name"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
@@ -51,10 +54,13 @@
 	        android:layout_gravity="center"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:layout_weight="2"
+	        android:layout_weight="1.5"
 	        android:text="@string/pwd_txt"
 	        android:textSize="14sp"/>
-	    <com.example.gank.widget.EditTextWithDelete 
+	    <com.example.gank.widget.EditTextWithDelete
+	        android:drawableLeft="@drawable/password_edittext" 
+	        android:paddingTop="2dp"
+	        android:paddingLeft="5dp"
 	        android:id="@+id/edt_pwd"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
